@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorator="layout/default_layout">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="row mt-3">
+            <div class="col-md-12" style="text-align: right;">
+                <a href="/employee/new" class="btn btn-success">Add new projects</a>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="h1">All Projects</div>
+            <div class="col-md-12 mt-2" th:each="p:${projects}">
+                <div class="h3" th:text="${p.name}"></div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Project</th>
+                            <th>Salary</th>
+                            <th>Manage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="e: ${p.employees}">
+                            <td th:text="${e.id}"></td>
+                            <td th:text="${e.name}"></td>
+                            <td th:text="${e.department.name}"></td>
+                            <td th:text="${e.project.name}"></td>
+                            <td th:text="${e.salary}"></td>
+                            <td>
+                                <a class="btn btn-info btn-sm">
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this employee?')">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
